@@ -1,18 +1,21 @@
 " .vimrc File
-" Maintained by: Jeffrey Way
-" jeffrey@jeffrey-way.com
-" http://net.tutsplus.com
+" Maintained by: Dmitry Ogurtsov
+" daogurtsov@gmail.com
+" daogurtsov.github.com
 "
 
 "Forget compatibility with Vi. Who cares.
 set nocompatible
-
 "Enable filetypes
 filetype on
 filetype plugin on
 filetype indent on
 syntax on
 
+"lines
+set lines=40
+"columns
+set columns=90
 "Write the old file out when switching between files.
 set autowrite
 
@@ -24,7 +27,7 @@ set ruler
 
 "Ever notice a slight lag after typing the leader key + command? This lowers
 "the timeout.
-set timeoutlen=500
+set timeoutlen=700
 
 "Switch between buffers without saving
 set hidden
@@ -107,7 +110,7 @@ set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
 "autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
 "Load the current buffer in Firefox - Mac specific.
-abbrev ff :! open -a firefox.app %:p<cr>
+abbrev ff :! open -a firefox %:p<cr>
 
 "Map a change directory to the desktop - Mac specific
 nmap ,d :cd ~/Desktop<cr>:e.<cr>
