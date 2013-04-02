@@ -1,5 +1,5 @@
 " .vimrc File
-" Maintained by:Dmitry Ogurtsov
+" Maintained by: Dmitry Ogurtsov
 " daogurtsov@gmail.com
 " daogurtsov.github.com
 "
@@ -9,34 +9,19 @@ set nocompatible
 "Enable filetypes
 filetype on
 filetype plugin on
-"Pathogen
-call pathogen#runtime_append_all_bundles() 
-
 filetype indent on
 syntax on
-"length
-set lines=57
-"columns
-set columns=100
-"line numbers
-"set numbers
 
+"lines
+set lines=40
+"columns
+set columns=90
 "Write the old file out when switching between files.
 set autowrite
-
-"Backspace all line.
-set backspace=indent,eol,start
-
-"Default flag for substitution
-set gdefault
 
 "Display current cursor position in lower right corner.
 set ruler
 
-"Cursor line ruler
-set cursorline
-
-"Adding abreviations
 "Want a different map leader than \
 "set mapleader = ",";
 
@@ -44,21 +29,15 @@ set cursorline
 "the timeout.
 set timeoutlen=700
 
-"Rip out swap file
-set noswapfile
-
 "Switch between buffers without saving
 set hidden
 
 "Set the color scheme. Change this to your preference. 
 "Here's 100 to choose from: http://www.vim.org/scripts/script.php?script_id=625
-colorscheme wombat256mod
+colorscheme twilight
 
-"Color column
-set colorcolumn=80
 "Set font type and size. Depends on the resolution. Larger screens, prefer h15
-" set guifont=Monospaced:h11
-" set font=Monospaced:h11
+set guifont=Monaco:h18
 
 "Tab stuff
 set tabstop=3
@@ -79,10 +58,6 @@ set number
 set smartindent
 set autoindent
 
-"Force encode
-set fileencoding=utf-8
-set encoding=utf-8
-
 "Always show the status line
 set laststatus=2
 
@@ -91,7 +66,7 @@ set linespace=3
 
 "Better line wrapping 
 set wrap
-set textwidth=60
+set textwidth=79
 set formatoptions=qrn1
 
 "Set incremental searching"
@@ -120,10 +95,7 @@ set mousehide
 nnoremap <leader>ft Vatzf
 
 " Create dictionary for custom expansions
-set dictionary+=C:\Program\ Files\ \(x86\)\Vim\vimfiles\dict.txt
-
-" C-Space seems to work under gVim on both Linux and win32
-inoremap <C-Space> <C-n>
+set dictionary+=/Users/Home/.vim/dict.txt
 
 "Opens a vertical split and switches over (\v)
 nnoremap <leader>v <C-w>v<C-w>l
@@ -137,20 +109,17 @@ set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
 "Set up an HTML5 template for all new .html files
 "autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
-"Load the current buffer in Firefox - win specific.
-abbrev ff :!start cmd /k "C:\Program Files (x86)\Mozilla Firefox\firefox.exe" %:p<cr>
-"abbrev ff :! open -a firefox.app %:p<cr>
+"Load the current buffer in Firefox - Mac specific.
+abbrev ff :! open -a firefox %:p<cr>
 
-"Map a change directory to the desktop - win specific
-nmap ,d :cd c:\Users\daogu_000\Desktop<cr>:e.<cr>
-"nmap ,d :cd ~/Desktop<cr>:e.<cr>
+"Map a change directory to the desktop - Mac specific
+nmap ,d :cd ~/Desktop<cr>:e.<cr>
 
 "Shortcut for editing  vimrc file in a new tab
 nmap ,ev :tabedit $MYVIMRC<cr>
 
 "Change zen coding plugin expansion key to shift + e
-let g:user_zen_expandabbr_key = '<c-z>'
-
+let g:user_zen_expandabbr_key = '<C-e>'
 
 "Faster shortcut for commenting. Requires T-Comment plugin
 map ,c <c-_><c-_>
@@ -171,12 +140,12 @@ imap ,<tab> <C-x><C-o>
 " set wildmode=list:longest
 
 "http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-         \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-         \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" set completeopt=longest,menuone
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+"   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 "Map escape key to jj -- much faster
 imap jj <esc>
@@ -196,7 +165,7 @@ vmap <C-Down> xp`[V`]
 " Source the vimrc file after saving it. This way, you don't have to reload
 " Vim to see the changes.
 if has("autocmd")
-   autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 "
 " easier window navigation
@@ -226,80 +195,23 @@ iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius
 iab teh the
 iab Teh The
 
+"--------------------------"
+" PERSONAL SETTINGS 
+" -------------------------"
+"Example for adding abbreviations - triggered by the spacebar.
+iabbrev mysite ftp://jeff-way.com@jeffrey-way.com/domains/
+
+"Shortcut for logging into my server
+nmap ,server :Nread ftp://jeff-way.com@jeffrey-way.com/domains/<cr>
+
+"Shortcut directly to my theme files on server
+nmap ,theme :Nread ftp://jeff-way.com@jeffrey-way.com/domains/jeffrey-way.com/html/wp-content/themes/magazineJW/<cr>
+
+"For autocompletion of Snipmate plugin
+"let g:acp_behaviorSnipmateLength = 1
+
 "Peep open
 if has("gui_macvim")
-   macmenu &File.New\ Tab key=<nop>
-   map <c-o> <Plug>PeepOpen
+  macmenu &File.New\ Tab key=<nop>
+  map <c-o> <Plug>PeepOpen
 end
-"Auto php
-"au BufRead, BufNewFile *.php setfiletype php
-
-"Line ends charater
-" set list 
-set listchars=eol:¬
-
-"Autocomplete navigation
-imap <Tab> <C-n>
-imap <S-Tab> <C-p>
-
-"set folding method and marker
-set fdm=marker
-set foldmarker=[[,]]
-
-"yank full file path to buffer
-let @+=expand("%:p")
-
-"easymotion leader remapping
-let g:EasyMotion_leader_key = ','
-
-"capitalaize - has confilict with comment
-if (&tildeop)
- nmap gcw guw~l
- nmap gcW guW~l
- nmap gciw guiw~l
- nmap gciW guiW~l
- nmap gcis guis~l
- nmap gc$ gu$~l
- nmap gcgc guu~l
- nmap gcc guu~l
- vmap gc gu~l
-else
- nmap gcw guw~h
- nmap gcW guW~h
- nmap gciw guiw~h
- nmap gciW guiW~h
- nmap gcis guis~h
- nmap gc$ gu$~h
- nmap gcgc guu~h
- nmap gcc guu~h
- vmap gc gu~h
-endif
-
-"copy directly to clipboard
-set clipboard=unnamed
-
-"copy directly to clipboard vi-mode
-:set go+=a
-"jsbeautify
-let g:jsbeautify = {"indent_size": 4, "indent_char": "\t"} 
-
-"snipMate
-"let g:snips_trigger_key='<C-space>'
-"
-"closing braces
-inoremap        (  ()<Left>
-inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-
-"snipMate
-"let g:snips_trigger_key='<C-space>'
-
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
-let g:snipMate.scope_aliases['js'] = 'javascript,javascript-jquery'
-
-
