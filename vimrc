@@ -289,3 +289,7 @@ let g:jsbeautify = {"indent_size": 4, "indent_char": "\t"}
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['js'] = 'javascript.snippets,javascript_jquery'
+
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
